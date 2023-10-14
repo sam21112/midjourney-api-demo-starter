@@ -1,10 +1,10 @@
 'use client'; // this is a client component 👈🏽
 import axios from 'axios';
-import { firestore } from '../db';
+import { firestore as getFirestore } from '../db';
 import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
-const AUTH_TOKEN = '';
+const AUTH_TOKEN = '895d5309-464b-4ce5-af72-bcc2c6c17934';
 const endpoint = `https://api.thenextleg.io`;
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
   const [response, setResponse] = useState('');
 
   useEffect(() => {
-    onSnapshot(collection(firestore, 'imgs'), snapshot => {
+    onSnapshot(collection(getFirestore, 'imgs'), snapshot => {
       let allImgs: { createdAt: any; imgUrl: string }[] = snapshot.docs.map(
         doc => doc.data(),
       ) as any;
@@ -78,7 +78,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <h1 className='text-4xl py-8'>These are your images!</h1>
+        <h1 className='text-4xl py-8'> your images!</h1>
         <div className='grid grid-cols-3 gap-4'>
           {imgs.map(img => (
             <img
